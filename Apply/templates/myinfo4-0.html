@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>浙里吧场地预约系统</title>
+
+<!-- Bootstrap -->
+<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<!--<style>
+  body{background-image: url('../imgage/main-1.jpg');background-size: 100% 1000px;}
+</style>-->
+<style>  
+body{background-color: #FAEBD7;}
+</style>  
+</head>
+<body>
+<!--Navigator-->
+<nav class="navbar navbar-default " role="navigation" style = "background-color: black; margin-bottom:0px;">
+    <div class="container-fluid" >
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#" style="margin-left:20px;font-size: 20px;color: white;"><em>浙里吧 </em>场地预约系统</a>
+    </div>
+    <div style = "margin-top:10px;margin-bottom:-10px;margin-left:1050px;">
+      <p style="font-size: 20px;margin-right:0;color: white;">欢迎 {{name}} (+_+) <a class="btn btn-primary btn-sm" style="font-size: 15px;margin-left:20px;color: #FAEBD7;" href="/Main/login">退出</a></p>
+    </div>
+  </div>
+</nav>
+<!--Mainpart-->
+
+  <div class="row clearfix" style = "margin-top: 10px;">
+    <!--Navigator-->
+    <div class="col-md-2 column" style="border-right: 2px solid gray ; height: 20cm">
+      <ul class="nav nav-pills nav-stacked">
+        <li>
+           <a href="/Apply/myinfo" >基本信息</a>
+        </li>
+        <li>
+           <a href="/Apply/modifycode" >修改密码</a>
+        </li>
+        <li>
+           <a href="/Apply/myrecord" >申请记录</a>
+        </li>
+        <li class="active">
+           <a href="#" >场地查询</a>
+        </li>
+        <li>
+           <a href="/Apply/application" >场地申请</a>
+        </li>
+      </ul>
+    </div>
+    <!--Navigator-->
+    <div class="col-md-10 column">
+      <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="300x200" src="/static/image/QC.jpg" />
+            <div class="caption">
+              <h3>
+                全场
+              </h3>
+              <p>
+                浙里吧的全场是个好地方呀！春暖花开！岁月静好！
+              </p>
+              <p>
+                 <a class="btn btn-primary" href="/Apply/QCquery">Action</a> 
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="300x200" src="/static/image/HYS.jpg" />
+            <div class="caption">
+              <h3>
+                会议室
+              </h3>
+              <p>
+                浙里吧的会议室是个好地方呀！私密安静！想做啥做啥！
+              </p>
+              <p>
+                 <a class="btn btn-primary" href="/Apply/HYSquery">Action</a> 
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="300x200" src="/static/image/XB1.jpg" />
+            <div class="caption">
+              <h3>
+                小包厢一
+              </h3>
+              <p>
+                浙里吧的小包厢一是个好地方呀！小巧可爱！
+              </p>
+              <p>
+                 <a class="btn btn-primary" href="/Apply/XB1query">Action</a> 
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img alt="300x200" src="/static/image/XB2.jpg" />
+            <div class="caption">
+              <h3>
+                小包厢二
+              </h3>
+              <p>
+                浙里吧的小包厢二是个好地方呀！天真浪漫！
+              </p>
+              <p>
+                 <a class="btn btn-primary" href="/Apply/XB2query">Action</a> 
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
