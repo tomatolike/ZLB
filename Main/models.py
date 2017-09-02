@@ -70,8 +70,9 @@ class Record(models.Model):
 	rtype = models.CharField(max_length=1,choices=MAYBETYPED)
 	association = models.ForeignKey(Association, null = True)
 	up_time = models.DateTimeField(auto_now=True)
-	start_time = models.DateTimeField(null = True)
-	end_time = models.DateTimeField(null = True)
+	day_time = models.DateField(null = True)
+	start_time = models.IntegerField(null = True)
+	end_time = models.IntegerField(null = True)
 
 class Bad_record(models.Model):
 	record = models.ForeignKey(Record, on_delete=models.CASCADE)

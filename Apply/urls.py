@@ -9,6 +9,9 @@ urlpatterns = [
     url(r'^myrecord/', views.myrecord),
     url(r'^infoquery/', views.infoquery),
     url(r'^QCquery/', views.QCquery),
+    url(r'^HYSquery/', views.HYSquery),
+    url(r'^XB1query', views.XB1query),
+    url(r'^XB2query', views.XB2query),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
