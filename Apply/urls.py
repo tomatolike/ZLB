@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^HYSquery/', views.HYSquery),
     url(r'^XB1query', views.XB1query),
     url(r'^XB2query', views.XB2query),
+    url(r'^application', views.application),
+    url(r'^normalapp', views.normalapp),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

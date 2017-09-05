@@ -431,3 +431,16 @@ def XB2query(request):
 			week4[t][day-21] = ans[t][day]
 	return render(request, 'myinfo4-4.html', {'name':nm,'res':ans,'wek1':wek1,'week1':week1,'wek2':wek2,'week2':week2,'wek3':wek3,'week3':week3,'wek4':wek4,'week4':week4,'aday':aday,'aweek':aweek})
 
+@login_required
+def application(request):
+	user = request.user
+	gs = user.guest
+	nm = gs.name
+	return render(request, 'myinfo5-0.html', {'name':nm})
+
+@login_required
+def normalapp(request):
+	user = request.user
+	gs = user.guest
+	nm = gs.name
+	return render(request, 'myinfo5-1.html', {'name':nm})
