@@ -83,14 +83,14 @@ body{background-color: #FAEBD7;}
               {% else %}
               <td>小包厢2</td>
               {% endif %}
-              <td>{{record.up_time}}</td>
-              <td>{{record.start_time}} ~ {{record.end_time}}</td>
+              <td>{{record.up_time|date:"Y-m-d"}}</td>
+              <td>{{record.day_time|date:"Y-m-d"}}的{{record.start_time}}点到{{record.end_time}}点</td>
               {% if record.rtype == 'n' %}
               <td>普通</td>
               {% else %}
               <td>社团</td>
               {% endif %}
-              <td>{{record.association_name}}</td>
+              <td>{{record.association.name}}</td>
               {% if record.status == '11' %}
               <td>等待社团指导老师审核</td>
               {% elif record.status == '12' %}
@@ -111,7 +111,7 @@ body{background-color: #FAEBD7;}
               {% if record.status == '11' %}
               <td>社团指导老师的审核账号密码请询问社联</td>
               {% elif record.status == '13' %}
-              <td>非社团申请请将申请表格下载填写后提前三天交至浙里吧，否则无法通过</td>
+              <td>非社团申请全场请将申请表格下载填写后提前三天交至浙里吧，否则无法通过</td>
               {% elif record.status == '2' %}
               <td style = "color: green">要准时到哦！</td>
               {% elif record.status == '31' %}

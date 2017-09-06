@@ -72,10 +72,9 @@ def myrecord(request):
 	user = request.user
 	gs = user.guest
 	nm = gs.name
-	res = [[0 for i in range(6)] for j in range(6)]
 
 	try:
-		recordlist = Record.objects.get(guest = gs)
+		recordlist = Record.objects.filter(guest = gs)
 	except ObjectDoesNotExist:
 		recordlist = None
 	return render(request, 'myinfo3.html', {'name':nm,'allrecord_list':recordlist})
@@ -230,7 +229,13 @@ def HYSquery(request):
 
 	for day in range(28):
 		to_day = start + timedelta(days = day)
-		records = Record.objects.filter(day_time = to_day, room = 'b')
+		recorda = Record.objects.filter(day_time = to_day, room = 'b')
+		recordb = Record.objects.filter(day_time = to_day, room = 'a')
+		records = []
+		for w in recorda:
+			records.append(w)
+		for w in recordb:
+			records.append(w)
 		for r in records:
 			if r.status == '2':
 				st = r.start_time
@@ -316,7 +321,13 @@ def XB1query(request):
 
 	for day in range(28):
 		to_day = start + timedelta(days = day)
-		records = Record.objects.filter(day_time = to_day, room = 'x1')
+		recorda = Record.objects.filter(day_time = to_day, room = 'x1')
+		recordb = Record.objects.filter(day_time = to_day, room = 'a')
+		records = []
+		for w in recorda:
+			records.append(w)
+		for w in recordb:
+			records.append(w)
 		for r in records:
 			if r.status == '2':
 				st = r.start_time
@@ -402,7 +413,13 @@ def XB2query(request):
 
 	for day in range(28):
 		to_day = start + timedelta(days = day)
-		records = Record.objects.filter(day_time = to_day, room = 'x2')
+		recorda = Record.objects.filter(day_time = to_day, room = 'x2')
+		recordb = Record.objects.filter(day_time = to_day, room = 'a')
+		records = []
+		for w in recorda:
+			records.append(w)
+		for w in recordb:
+			records.append(w)
 		for r in records:
 			if r.status == '2':
 				st = r.start_time
@@ -443,4 +460,121 @@ def normalapp(request):
 	user = request.user
 	gs = user.guest
 	nm = gs.name
-	return render(request, 'myinfo5-1.html', {'name':nm})
+	if request.method == 'POST':
+		rom = request.POST['position']
+		date = request.POST['day']
+		start_t = request.POST['start_time']
+		end_t = request.POST['end_time']
+		rs = request.POST['reason']
+		if rom == None:
+			return HttpResponse('<script>alert("请选择场地！");location.replace("/Apply/normalapp/");</script>')
+		if date == None:
+			return HttpResponse('<script>alert("请选择日期！");location.replace("/Apply/normalapp/");</script>')
+		if start_t == None:
+			return HttpResponse('<script>alert("请选择开始时间!");location.replace("/Apply/normalapp/");</script>')
+		if end_t == None:
+			return HttpResponse('<script>alert("请选择结束时间！");location.replace("/Apply/normalapp/");</script>')
+		if end_t <= start_t:
+			return HttpResponse('<script>alert("年轻人！结束时间要大于开始时间啊！");location.replace("/Apply/normalapp/");</script>')
+		if rs == None:
+			return HttpResponse('<script>alert("请输入使用目的！");location.replace("/Apply/normalapp/");</script>')
+		newrecord = Record()
+		newrecord.guest = gs
+		newrecord.room = rom
+		newrecord.status = '13'
+		newrecord.rtype = 'n'
+		newrecord.reason = rs
+		newrecord.day_time = date
+		newrecord.start_time = start_t
+		newrecord.end_time = end_t
+		newrecord.save()
+		if rom == 'a':
+			return HttpResponse('<script>alert("申请成功！申请全场记得交表哦！否则无法通过审核哦！");location.replace("/Apply/myinfo/");</script>')
+		else:
+			return HttpResponse('<script>alert("申请成功！请等待审核！");location.replace("/Apply/myinfo/");</script>')
+	else:
+		now_day = now().date()
+		wk_day = now_day.weekday()
+		if wk_day == 0:
+			start = now_day + timedelta(days = 7)
+		elif wk_day == 1:
+			start = now_day + timedelta(days = 6)
+		elif wk_day == 2:
+			start = now_day + timedelta(days = 5)
+		elif wk_day == 3:
+			start = now_day + timedelta(days = 4)
+		elif wk_day == 4:
+			start = now_day + timedelta(days = 3)
+		elif wk_day == 5:
+			start = now_day + timedelta(days = 2)
+		else :
+			start = now_day + timedelta(days = 1)
+		alldays = []
+		for i in range(28):
+			alldays.append(start + timedelta(days = i))
+		return render(request, 'myinfo5-1.html', {'name':nm,'days':alldays})
+
+@login_required
+def assapp(request):
+	user = request.user
+	gs = user.guest
+	nm = gs.name
+	if request.method == 'POST':
+		rom = request.POST['position']
+		date = request.POST['day']
+		start_t = request.POST['start_time']
+		end_t = request.POST['end_time']
+		ass = request.POST['association']
+		rs = request.POST['reason']
+		if rom == None:
+			return HttpResponse('<script>alert("请选择场地！");location.replace("/Apply/assapp/");</script>')
+		if date == None:
+			return HttpResponse('<script>alert("请选择日期！");location.replace("/Apply/assapp/");</script>')
+		if start_t == None:
+			return HttpResponse('<script>alert("请选择开始时间!");location.replace("/Apply/assapp/");</script>')
+		if end_t == None:
+			return HttpResponse('<script>alert("请选择结束时间！");location.replace("/Apply/assapp/");</script>')
+		if end_t <= start_t:
+			return HttpResponse('<script>alert("年轻人！结束时间要大于开始时间啊！");location.replace("/Apply/assapp/");</script>')
+		if rs == None:
+			return HttpResponse('<script>alert("请输入使用目的！");location.replace("/Apply/assapp/");</script>')
+		if ass == None:
+			return HttpResponse('<script>alert("请选择社团！");location.replace("/Apply/assapp/");</script>')
+		newrecord = Record()
+		newrecord.guest = gs
+		newrecord.room = rom
+		newrecord.status = '11'
+		newrecord.rtype = 's'
+		asso = Association.objects.get(AID = ass)
+		newrecord.association = asso
+		newrecord.reason = rs
+		newrecord.day_time = date
+		newrecord.start_time = start_t
+		newrecord.end_time = end_t
+		newrecord.save()
+		if rom == 'a':
+			return HttpResponse('<script>alert("申请成功！申请全场记得交表哦！否则无法通过审核哦！");location.replace("/Apply/myinfo/");</script>')
+		else:
+			return HttpResponse('<script>alert("申请成功！请等待审核！");location.replace("/Apply/myinfo/");</script>')
+	else:
+		now_day = now().date()
+		wk_day = now_day.weekday()
+		if wk_day == 0:
+			start = now_day + timedelta(days = 7)
+		elif wk_day == 1:
+			start = now_day + timedelta(days = 6)
+		elif wk_day == 2:
+			start = now_day + timedelta(days = 5)
+		elif wk_day == 3:
+			start = now_day + timedelta(days = 4)
+		elif wk_day == 4:
+			start = now_day + timedelta(days = 3)
+		elif wk_day == 5:
+			start = now_day + timedelta(days = 2)
+		else :
+			start = now_day + timedelta(days = 1)
+		alldays = []
+		for i in range(28):
+			alldays.append(start + timedelta(days = i))
+		allas = Association.objects.filter(status = 'y')
+		return render(request, 'myinfo5-2.html', {'name':nm,'days':alldays,'allas':allas})

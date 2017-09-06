@@ -61,7 +61,7 @@ body{background-color: #FAEBD7;}
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
-            <h1 class="text-center">普通申请</h1>
+            <h1 class="text-center">社团申请</h1>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@ body{background-color: #FAEBD7;}
       <div class="container">
         <div class="row">
           <div class="text col-md-6 col-md-offset-3">
-            <form role="form" method="post" action="/Apply/normalapp/">
+            <form role="form" method="post" action="/Apply/assapp/">
               {% csrf_token %}
               <div class="form-group">
                 <label for="chooseposition">借用场地：</label>
@@ -127,6 +127,15 @@ body{background-color: #FAEBD7;}
                   <option value="21">21点</option>
                   <option value="22">22点</option>
                   <option value="23">23点</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="time">借用社团：</label>
+                <select class="form-control" name="association" id="as">
+                  <option value="">请选择社团</option>
+                  {% for as in allas %}
+                  <option value="{{as.AID}}">{{as.name}}</option>
+                  {% endfor %}
                 </select>
               </div>
               <div class="form-group" style="margin-top:10px;">

@@ -32,7 +32,7 @@ class Association(models.Model):
 
 class Manager(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	association = models.ForeignKey(Association, on_delete=models.CASCADE)
+	association = models.ForeignKey(Association, on_delete=models.CASCADE, null=True)
 	MAYBETYPEC = (
 		('s','shelian'),
 		('l','zhidaolaoshi'),
@@ -69,6 +69,7 @@ class Record(models.Model):
 		)
 	rtype = models.CharField(max_length=1,choices=MAYBETYPED)
 	association = models.ForeignKey(Association, null = True)
+	reason = models.CharField(max_length=100, null = True)
 	up_time = models.DateTimeField(auto_now=True)
 	day_time = models.DateField(null = True)
 	start_time = models.IntegerField(null = True)

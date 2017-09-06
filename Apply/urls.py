@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^XB2query', views.XB2query),
     url(r'^application', views.application),
     url(r'^normalapp', views.normalapp),
+    url(r'^assapp', views.assapp),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
